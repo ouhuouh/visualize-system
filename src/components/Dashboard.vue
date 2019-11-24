@@ -3,6 +3,7 @@
     <Header style="width:100%; height: 10%"></Header>
     <MeasuringDashboard class="measure_dash"></MeasuringDashboard>
     <BuildingDashboard class="build_dash"></BuildingDashboard>
+    <DataFetch style="display:none"></DataFetch>
   </div>
 </template>
 
@@ -10,9 +11,10 @@
 import Header from "./Header";
 import BuildingDashboard from "./BuildingDashboard";
 import MeasuringDashboard from "./MeasuringDashboard";
+import DataFetch from "./DataFetch";
 export default {
   name: 'HelloWorld',
-  components: {MeasuringDashboard, BuildingDashboard, Header}
+  components: {DataFetch, MeasuringDashboard, BuildingDashboard, Header}
 }
 </script>
 

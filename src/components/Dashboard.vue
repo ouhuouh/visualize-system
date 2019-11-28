@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header style="width:100%; height: 10%"></Header>
+    <Header class="header"></Header>
     <MeasuringDashboard class="measure_dash"></MeasuringDashboard>
     <BuildingDashboard class="build_dash"></BuildingDashboard>
     <DataFetch style="display:none"></DataFetch>
@@ -19,21 +19,47 @@ export default {
 </script>
 
 <style scoped>
+@media(max-width: 1200px){
+  .container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    overflow: scroll;
+    align-content: flex-start;
+
+  }
+  .measure_dash, .build_dash {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media(min-width: 1200px){
+  .container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    overflow: hidden;
+  }
+  .measure_dash, .build_dash {
+    width: 90%;
+    height: 40%
+  }
+}
 .container{
   display: flex;
   flex-flow: row wrap;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  justify-content: space-around;
+  background: #242322;
+  color: azure;
 }
 
-.first-row {
-  width: 31%;
-  height: 40%
-}
-
-.measure_dash, .build_dash {
+.header{
   width: 100%;
-  height: 40%
+  height: auto;
 }
+
 </style>

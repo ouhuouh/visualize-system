@@ -20,7 +20,7 @@ body, html {
   height: 100vh;
   width: 100vw;
   min-height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -30,6 +30,6 @@ body, html {
   color: #2c3e50;
   margin: 0px;
   height: 100%;
-  overflow: hidden;
+  /*overflow: scroll;*/
 }
 </style>

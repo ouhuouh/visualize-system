@@ -4,88 +4,98 @@ var axios = require('axios')
 
 export default {
   name: "DataFetch",
+  data() {
+    return{
+      provider_Tzm: 0,
+      provider_To: 0,
+      provider_status: '',
+      provider_Fxm: 0,
+      provider_failure: '',
+      controller_Tzco: 0,
+      controller_valve: 0,
+      controller_Tzcoref: 0,
+      controller_status: '',
+      exchanger_MPC: 0,
+      exchanger_supply: 0,
+      exchanger_status: '',
+      building_Th: 0,
+      building_Tpcob: 0,
+      building_Tr: 0,
+      building_Fcob: 0,
+      building_status: ''
+    }
+  },
   methods: {
     fetchData() {
       var config = {
           headers: {'Access-Control-Allow-Origin': '*'}
       };
-      axios.get('https://anoldlogcabinforsale.szyszki.de/building/tag/Radek', config)
-      .then((response) => {
-        // handle success
-        console.log(response);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      })
+        axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+        axios.get('https://anoldlogcabinforsale.szyszki.de/provider/last/1', config)
+        .then((response) => {
+          this.provider_Tzm = this.returnData(response).incoming_water_temp_Tzm;
+          this.provider_To = this.returnData(response).outside_temp_To;
+          this.provider_status = this.returnData(response).status;
+          this.provider_Fxm = this.returnData(response).warm_water_stream_Fzm;
+          this.provider_failure = this.returnData(response).failure
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axios.get('https://anoldlogcabinforsale.szyszki.de/controler/last/1', config)
+          .then((response) => {
+           this.controller_Tzco = this.returnData(response).incoming_water_temp_Tzco;
+           this.controller_valve = this.returnData(response).valve;
+           this.controller_Tzcoref = this.returnData(response).set_temp_Tzcoref;
+           this.controller_status = this.returnData(response).status;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        axios.get('https://anoldlogcabinforsale.szyszki.de/exchanger/last/1', config)
+          .then((response) => {
+           this.exchanger_MPC = this.returnData(response).returnMPC_temp;
+           this.exchanger_supply = this.returnData(response).supply_temp;
+           this.exchanger_status = this.returnData(response).status;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        axios.get('https://anoldlogcabinforsale.szyszki.de/building/last/1', config)
+          .then((response) => {
+           this.building_Th = this.returnData(response).radiator_temp_Th;
+           this.building_Tpcob = this.returnData(response).return_water_temp_Tpcob;
+           this.building_Tr = this.returnData(response).room_temp_Tr;
+           this.building_Fcob = this.returnData(response).water_intake_Fcob
+           this.building_status = this.returnData(response).status;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    updateData(){
+        this.$store.commit('updateProvider_Tzm', this.provider_Tzm);
+        this.$store.commit('updateProvider_To', this.provider_To);
+        this.$store.commit('updateProvider_status', this.provider_status);
+        this.$store.commit('updateProvider_Fxm', this.provider_Fxm);
+        this.$store.commit('updateProvider_failure', this.provider_failure);
+    },
+    returnData(res){
+      return res.data[0]
     }
   },
   created(){
-    this.fetchData()
-  }
+    this.fetchData();
+  },
+    mounted() {
+      setInterval(() => {
+          this.updateData()
+      }, 5000)
+    }
 }
 </script>
 
 <style scoped>
 
 </style>
-<!--CONTROLER-->
-<!--[-->
-<!--{-->
-<!--"incoming_water_temp_Tzco": "15.121125088383508",-->
-<!--"set_temp_Tzcoref": "52.6375",-->
-<!--"status": "running",-->
-<!--"timestamp": "2009-12-12+00:44:45",-->
-<!--"valve": "1"-->
-<!--}-->
-<!--]-->
-<!--PROVIDER-->
-<!--[-->
-<!--{-->
-<!--"failure": "False",-->
-<!--"incoming_water_temp_Tzm": "77.5",-->
-<!--"outside_temp_To": "3.2",-->
-<!--"status": "Run",-->
-<!--"timestamp": "2009-12-11+00:00:00",-->
-<!--"warm_water_stream_Fzm": "1.0"-->
-<!--}-->
-<!--]-->
-<!--EXCHANGER-->
-<!--[-->
-<!--{-->
-<!--"returnMPC_temp": "99.77302686139798",-->
-<!--"status": "Unknow",-->
-<!--"supply_temp": "15.121125088388581",-->
-<!--"timestamp": "0"-->
-<!--}-->
-<!--]-->
-
-<!--BUILDING-->
-<!--{-->
-<!--"radiator_temp_Th": "15",-->
-<!--"return_water_temp_Tpcob": "30",-->
-<!--"room_temp_Tr": "20",-->
-<!--"status": "running",-->
-<!--"tag_name": "Radek",-->
-<!--"timestamp": "00:01:53",-->
-<!--"water_intake_Fcob": "500"-->
-<!--},-->
-<!--{-->
-<!--"radiator_temp_Th": "15",-->
-<!--"return_water_temp_Tpcob": "30",-->
-<!--"room_temp_Tr": "20",-->
-<!--"status": "running",-->
-<!--"tag_name": "Radek",-->
-<!--"timestamp": "00:01:53",-->
-<!--"water_intake_Fcob": "500"-->
-<!--},-->
-<!--{-->
-<!--"radiator_temp_Th": "15",-->
-<!--"return_water_temp_Tpcob": "30",-->
-<!--"room_temp_Tr": "20",-->
-<!--"status": "running",-->
-<!--"tag_name": "Radek",-->
-<!--"timestamp": "00:01:53",-->
-<!--"water_intake_Fcob": "500"-->
-<!--}-->
-<!--]-->

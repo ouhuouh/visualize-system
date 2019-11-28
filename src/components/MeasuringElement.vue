@@ -1,17 +1,20 @@
 <template>
   <div class="measuring_element">
     <h3>{{ this. name_ }}</h3>
+    <p>STATUS{{ this.status}}</p>
     <div v-if='this.name_ == "Provider"'>
-      <p>air temperature: {{ this.attr1_ }}</p>
-      <p>water temperature: {{ this.attr2_ }}</p>
+      <p>incoming water temperature[C]: {{ this.attr1_ }}</p>
+      <p>outside temperature[C]: {{ this.attr2_ }}</p>
+<!--      <p>warm water stream: </p>-->
     </div>
     <div v-if="this.name_ == 'Controller'">
       <p>valve: {{ this.attr1_ }}</p>
-      <p>water temperature: {{ this.attr2_ }}</p>
+      <p>floating water temperature</p>
+      <p>reference water temperature</p>
     </div>
     <div v-if="this.name_ == 'Heat Exchanger'">
-      <p>valve: {{ this.attr1_ }}</p>
-      <p>CO temperature: {{ this.attr2_ }}</p>
+      <p>supply temperature: {{ this.attr1_ }}</p>
+      <p>return MPC temperature: {{ this.attr2_ }}</p>
     </div>
   </div>
 </template>
@@ -21,6 +24,7 @@ export default {
   name: "MeasuringElement",
   props: {
     name: String,
+    status: String,
     attr1: Number,
     attr2: Number,
   },

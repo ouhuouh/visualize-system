@@ -20,15 +20,40 @@ export default {
 </script>
 
 <style scoped>
-.build_dash {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-}
-.build_dash > * {
-  width: 47%;
-  align-self: center;
-  padding: 50px 0px;
+@media(max-width: 1200px){
+  .build_dash {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+  }
+  .build_dash > * {
+    width: 80%;
+    align-self: center;
+    padding: 50px 0px;
+    height: 20%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+  }
 }
 
+@media(min-width: 1200px){
+  .build_dash {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .build_dash > * {
+    width: 32%;
+    align-self: center;
+    padding: 50px 0px;
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+  }
+}
+.build_dash > * {
+  background: rgba(142, 142, 142, 0.77)
+}
 </style>

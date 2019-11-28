@@ -1,21 +1,35 @@
 <template>
   <div class="build_dash">
-    <Building name="Building A" :temp="this.tempA"></Building>
-    <Building name="Building B" :temp="this.tempB"></Building>
+    <Building class="buildA" name="Building A" :status="this.statusA" :room_temp="this.room_tempA" :rad_temp="this.rad_tempA" :water_intake="this.water_intakeA"></Building>
+    <Building class="buildB" name="Building B" :status="this.statusB" :room_temp="this.room_tempB" :rad_temp="this.rad_tempB" :water_intake="this.water_intakeB"></Building>
   </div>
 </template>
 
 <script>
 import Building from "./Building";
 export default {
-  name: "BuildingDashboard",
-  components: {Building},
-  data(){
-    return {
-      tempA: 5,
-      tempB: 2
+    name: "BuildingDashboard",
+    components: {Building},
+    data() {
+        return {
+            statusA: '',
+            statusB: '',
+            room_tempA: 0,
+            room_tempB: 0,
+            rad_tempA: 0,
+            rad_tempB: 0,
+            water_intakeA: 0,
+            water_intakeB: 0
+        }
+    },
+    mounted() {
+        setInterval(() => {
+            this.statusA = this.$store.getters.getBuilding_Status;
+            this.room_tempA = Number(this.$store.getters.getBuilding_Tr).toFixed(2);
+            this.rad_tempA = Number(this.$store.getters.getBuilding_Th).toFixed(2);
+            this.water_intakeA = Number(this.$store.getters.getBuilding_Fcob).toFixed(2);
+        }, 1000);
     }
-  }
 }
 </script>
 
@@ -50,10 +64,14 @@ export default {
     height: 30%;
     display: flex;
     flex-flow: column;
-    justify-content: flex-end;
+    justify-content: center;
   }
 }
-.build_dash > * {
-  background: rgba(142, 142, 142, 0.77)
+.buildA {
+  background: rgba(29, 102, 247, 0.6)
+}
+
+.buildB{
+  background: rgba(247, 84, 0, 0.6)
 }
 </style>

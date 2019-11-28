@@ -1,20 +1,22 @@
 <template>
   <div class="measuring_element">
-    <h3>{{ this. name_ }}</h3>
-    <p>STATUS{{ this.status}}</p>
-    <div v-if='this.name_ == "Provider"'>
-      <p>incoming water temperature[C]: {{ this.attr1_ }}</p>
-      <p>outside temperature[C]: {{ this.attr2_ }}</p>
+    <h3>{{ this.name}}</h3>
+    <p class="status" v-if="this.status == 'Run' || this.status == 'running'" style="color: green">{{ this.status.toUpperCase()}}</p>
+    <p  class="status" v-else-if="this.status == 'temp error'" style="color: red">{{ this.status.toUpperCase()}}</p>
+    <p  class="status" v-else style="color: yellow">{{ this.status.toUpperCase()}}</p>
+    <div v-if='this.name == "Provider"'>
+      <p>incoming water temperature[C]: {{ this.attr1 }}</p>
+      <p>outside temperature[C]: {{ this.attr2 }}</p>
 <!--      <p>warm water stream: </p>-->
     </div>
-    <div v-if="this.name_ == 'Controller'">
-      <p>valve: {{ this.attr1_ }}</p>
-      <p>floating water temperature</p>
-      <p>reference water temperature</p>
+    <div v-if="this.name == 'Controller'">
+      <p>valve: {{ this.attr1 }}</p>
+      <p>floating water temperature[C]: {{ this.attr2 }}</p>
+      <p>reference water temperature[C]: {{ this.attr3 }}</p>
     </div>
-    <div v-if="this.name_ == 'Heat Exchanger'">
-      <p>supply temperature: {{ this.attr1_ }}</p>
-      <p>return MPC temperature: {{ this.attr2_ }}</p>
+    <div v-if="this.name == 'Heat Exchanger'">
+      <p>supply temperature[C]: {{ this.attr1 }}</p>
+      <p>return MPC temperature[C]: {{ this.attr2 }}</p>
     </div>
   </div>
 </template>
@@ -27,6 +29,7 @@ export default {
     status: String,
     attr1: Number,
     attr2: Number,
+    attr3: Number
   },
   data(){
     return{
@@ -41,5 +44,9 @@ export default {
 <style scoped>
 .measuring_element {
   border: solid 1px black;
+}
+
+.status{
+  font-size: 20px;
 }
 </style>

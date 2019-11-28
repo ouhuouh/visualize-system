@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div id="failure" style="display: none">
+      <p id="Foo">F A I L U R E</p>
+    </div>
     <Header class="header"></Header>
     <MeasuringDashboard class="measure_dash"></MeasuringDashboard>
     <BuildingDashboard class="build_dash"></BuildingDashboard>
@@ -14,7 +17,25 @@ import MeasuringDashboard from "./MeasuringDashboard";
 import DataFetch from "./DataFetch";
 export default {
   name: 'HelloWorld',
-  components: {DataFetch, MeasuringDashboard, BuildingDashboard, Header}
+  components: {DataFetch, MeasuringDashboard, BuildingDashboard, Header},
+  methods: {
+    flashingText(){
+        var f = document.getElementById('Foo');
+        setInterval(function() {
+            f.style.display = (f.style.display == 'none' ? '' : 'none');
+        }, 1000);
+      },
+    ifFailure(){
+      if(this.$store.getters.getProvider_failure === "False"){
+        document.getElementById('failure').style.display = 'block !important';
+        // this.flashingText()
+      }
+    },
+    mounted(){
+      setInterval(() => this.ifFailure(), 1000)
+    }
+  },
+
 }
 </script>
 
@@ -62,4 +83,10 @@ export default {
   height: auto;
 }
 
+#failure{
+  height:100% !important;
+  width: 100% !important;
+  background: red;
+  color: white;
+}
 </style>

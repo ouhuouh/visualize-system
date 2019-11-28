@@ -43,7 +43,7 @@
 
 #txt{
   float: right;
-  margin-right: 15px;
+  margin-right: 55px;
   font-size: 25px;
   font-family: "Roboto Light";
 }

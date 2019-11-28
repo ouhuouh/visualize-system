@@ -6,7 +6,7 @@ export default {
   name: "DataFetch",
   data() {
     return{
-      provider_Tzm: 0,
+      provider_Tzm1: 0,
       provider_To: 0,
       provider_status: '',
       provider_Fxm: 0,
@@ -33,7 +33,7 @@ export default {
         axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
         axios.get('https://anoldlogcabinforsale.szyszki.de/provider/last/1', config)
         .then((response) => {
-          this.provider_Tzm = this.returnData(response).incoming_water_temp_Tzm;
+          this.provider_Tzm1 = this.returnData(response).incoming_water_temp_Tzm;
           this.provider_To = this.returnData(response).outside_temp_To;
           this.provider_status = this.returnData(response).status;
           this.provider_Fxm = this.returnData(response).warm_water_stream_Fzm;
@@ -69,17 +69,29 @@ export default {
            this.building_Tr = this.returnData(response).room_temp_Tr;
            this.building_Fcob = this.returnData(response).water_intake_Fcob
            this.building_status = this.returnData(response).status;
+          console.log(response)
           })
           .catch((error) => {
             console.log(error);
           });
     },
     updateData(){
-        this.$store.commit('updateProvider_Tzm', this.provider_Tzm);
+        this.$store.commit('updateProvider_Tzm', this.provider_Tzm1);
         this.$store.commit('updateProvider_To', this.provider_To);
         this.$store.commit('updateProvider_status', this.provider_status);
         this.$store.commit('updateProvider_Fxm', this.provider_Fxm);
         this.$store.commit('updateProvider_failure', this.provider_failure);
+        this.$store.commit('updateController_Tzco', this.controller_Tzco);
+        this.$store.commit('updateController_Tzcoref', this.controller_Tzcoref);
+        this.$store.commit('updateController_Valve', this.controller_valve);
+        this.$store.commit('updateController_Status', this.controller_status);
+        this.$store.commit('updateExchanger_MPC', this.exchanger_MPC);
+        this.$store.commit('updateExchanger_Supply', this.exchanger_supply);
+        this.$store.commit('updateExchanger_Status', this.exchanger_status);
+        this.$store.commit('updateBuilding_Th', this.building_Th);
+        this.$store.commit('updateBuilding_Tr', this.building_Tr);
+        this.$store.commit('updateBuilding_Fcob', this.building_Fcob);
+        this.$store.commit('updateBuilding_Status', this.building_status);
     },
     returnData(res){
       return res.data[0]
@@ -90,8 +102,9 @@ export default {
   },
     mounted() {
       setInterval(() => {
-          this.updateData()
-      }, 5000)
+          this.fetchData();
+          this.updateData();
+      }, 1000)
     }
 }
 </script>

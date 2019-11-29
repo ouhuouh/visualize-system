@@ -1,7 +1,7 @@
 <template>
   <div class="measuring_element">
     <h3>{{ this.name}}</h3>
-    <p class="status" v-if="this.status == 'Run' || this.status == 'running'" style="color: green">{{ this.status.toUpperCase()}}</p>
+    <p class="status" v-if="this.status.toUpperCase() == 'RUN' || this.status.toUpperCase() == 'RUNNING'" style="color: green">{{ this.status.toUpperCase()}}</p>
     <p  class="status" v-else-if="this.status == 'temp error'" style="color: red">{{ this.status.toUpperCase()}}</p>
     <p  class="status" v-else style="color: yellow">{{ this.status.toUpperCase()}}</p>
     <div v-if='this.name == "Provider"'>

@@ -8,6 +8,7 @@
 
 <script>
 import MeasuringElement from "./MeasuringElement";
+import {mapGetters} from "vuex";
 export default {
   name: "MeasuringDashboard",
   components: {MeasuringElement},
@@ -20,8 +21,11 @@ export default {
         ]
     }
   },
-    methods:{
-
+    computed: mapGetters['getProvider_Tzm'],
+    watch: {
+        getProvider_Tzm: function() {
+            console.log("watch dziala")
+        }
     },
     mounted() {
         setInterval(() => {
@@ -33,8 +37,8 @@ export default {
             this.items[1].attr2 = Number(this.$store.getters.getController_Tzco).toFixed(2);
             this.items[1].attr3 = Number(this.$store.getters.getController_Tzcoref).toFixed(2);
             this.items[2].status = this.$store.getters.getExchanger_Status;
-            this.items[2].attr1 = Number(this.$store.getters.getExchanger_MPC).toFixed(2);
-            this.items[2].attr2 = Number(this.$store.getters.getExchanger_Supply).toFixed(2);
+            this.items[2].attr1 = Number(this.$store.getters.getExchanger_Supply).toFixed(2);
+            this.items[2].attr2 = Number(this.$store.getters.getExchanger_MPC).toFixed(2);
         }, 1000);
   }
 }

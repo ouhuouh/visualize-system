@@ -31,6 +31,13 @@ export default {
           headers: {'Access-Control-Allow-Origin': '*'}
       };
         axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+        axios.get('https://closingtime.szyszki.de/api/details')
+          .then((response) => {
+              console.log(response)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
         axios.get('https://anoldlogcabinforsale.szyszki.de/provider/last/1', config)
         .then((response) => {
           this.provider_Tzm1 = this.returnData(response).incoming_water_temp_Tzm;
@@ -70,7 +77,6 @@ export default {
            this.building_Tr = this.returnData(response).room_temp_Tr;
            this.building_Fcob = this.returnData(response).water_intake_Fcob
            this.building_status = this.returnData(response).status;
-          console.log(response)
           })
           .catch((error) => {
             console.log(error);

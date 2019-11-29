@@ -21,11 +21,7 @@ export default {
     }
   },
     methods:{
-      valveStatus(number){
-        if(number === "1")
-            return "OPEN";
-        return "CLOSED";
-      }
+
     },
     mounted() {
         setInterval(() => {
@@ -33,7 +29,7 @@ export default {
             this.items[0].attr1 = Number(this.$store.getters.getProvider_Tzm).toFixed(2);
             this.items[0].attr2 = Number(this.$store.getters.getProvider_To).toFixed(2);
             this.items[1].status = this.$store.getters.getController_Status;
-            this.items[1].attr1 = this.valveStatus(this.$store.getters.getController_Valve);
+            this.items[1].attr1 = Number(this.$store.getters.getController_Valve);
             this.items[1].attr2 = Number(this.$store.getters.getController_Tzco).toFixed(2);
             this.items[1].attr3 = Number(this.$store.getters.getController_Tzcoref).toFixed(2);
             this.items[2].status = this.$store.getters.getExchanger_Status;

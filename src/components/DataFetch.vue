@@ -46,6 +46,7 @@ export default {
           .then((response) => {
            this.controller_Tzco = this.returnData(response).incoming_water_temp_Tzco;
            this.controller_valve = this.returnData(response).valve;
+           // valve otwiera sie od 0 od 1, podac wartosc liczbowa
            this.controller_Tzcoref = this.returnData(response).set_temp_Tzcoref;
            this.controller_status = this.returnData(response).status;
           })
@@ -62,7 +63,7 @@ export default {
             console.log(error);
           });
 
-        axios.get('https://anoldlogcabinforsale.szyszki.de/building/last/1', config)
+        axios.get('https://anoldlogcabinforsale.szyszki.de/building/taglast/Radek/1', config)
           .then((response) => {
            this.building_Th = this.returnData(response).radiator_temp_Th;
            this.building_Tpcob = this.returnData(response).return_water_temp_Tpcob;

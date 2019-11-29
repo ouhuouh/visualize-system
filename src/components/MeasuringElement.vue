@@ -10,7 +10,7 @@
 <!--      <p>warm water stream: </p>-->
     </div>
     <div v-if="this.name == 'Controller'">
-      <p>valve: {{ this.attr1 }}</p>
+      <p>valve: {{ this.valveStatus(this.attr1) }} , {{ this.attr1 }}</p>
       <p>floating water temperature[C]: {{ this.attr2 }}</p>
       <p>reference water temperature[C]: {{ this.attr3 }}</p>
     </div>
@@ -37,6 +37,13 @@ export default {
       attr1_: this.attr1,
       attr2_: this.attr2
     }
+  },
+  methods: {
+      valveStatus(number){
+          if(number > 0)
+              return "OPEN";
+          return "CLOSED";
+      }
   }
 }
 </script>

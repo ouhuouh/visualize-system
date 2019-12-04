@@ -10,7 +10,7 @@ state: {
     provider_Fxm: 0,
     provider_failure: '',
     controller_Tzco: 0,
-    controller_valve: '',
+    controller_valve: 'not running',
     controller_Tzcoref: 0,
     controller_status: '',
     exchanger_MPC: 0,
@@ -20,7 +20,7 @@ state: {
     building_Tpcob: 0,
     building_Tr: 0,
     building_Fcob: 0,
-    building_status: ''
+    building_status: 'NOT RUNNING'
 },
 mutations: {
     updateProvider_Tzm(state, payload) {

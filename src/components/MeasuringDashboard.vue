@@ -72,7 +72,7 @@ export default {
         width: 32%;
         align-self: center;
         padding: 10px 0px;
-        height: fit-content%;
+        height: fit-content;
         display: flex;
         flex-flow: column;
         justify-content: flex-end;
@@ -80,6 +80,6 @@ export default {
 }
 
 .measure_dash > * {
-    background: rgba(17, 16, 15, 0.91)
+    background: rgba(42, 46, 46, 0.93)
 }
 </style>

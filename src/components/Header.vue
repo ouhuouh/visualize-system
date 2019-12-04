@@ -1,6 +1,6 @@
 <template>
   <div class="header" onload="this.startTime()">
-    <h1 id="title">HEATING SYSTEM</h1>
+    <h3 id="title">symulation time</h3>
     <p id="txt"></p>
   </div>
 </template>
@@ -44,8 +44,7 @@
 #txt{
   float: right;
   margin-right: 55px;
-  font-size: 25px;
-  font-family: "Roboto Light";
+  font-size: 15px;
 }
 
 #title{

@@ -56,12 +56,12 @@ export default {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    height: fit-content;
   }
   .build_dash > * {
     width: 32%;
     align-self: center;
-    padding: 50px 0px;
-    height: 30%;
+    height: fit-content;
     display: flex;
     flex-flow: column;
     justify-content: center;

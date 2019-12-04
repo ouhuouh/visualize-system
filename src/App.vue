@@ -23,7 +23,6 @@ body, html {
   /*overflow: hidden;*/
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,5 +30,9 @@ body, html {
   margin: 0px;
   height: 100%;
   /*overflow: scroll;*/
+  font-family: 'Barlow', sans-serif;
+
 }
+
+@import url('https://fonts.googleapis.com/css?family=Barlow:300&display=swap');
 </style>

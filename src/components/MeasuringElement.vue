@@ -1,22 +1,42 @@
 <template>
   <div class="measuring_element">
-    <h3>{{ this.name}}</h3>
+    <h3 style="margin: 3px 0px; text-decoration: azure underline">{{ this.name}}</h3>
     <p class="status" v-if="this.status.toUpperCase() == 'RUN' || this.status.toUpperCase() == 'RUNNING'" style="color: green">{{ this.status.toUpperCase()}}</p>
     <p  class="status" v-else-if="this.status == 'temp error'" style="color: red">{{ this.status.toUpperCase()}}</p>
-    <p  class="status" v-else style="color: yellow">{{ this.status.toUpperCase()}}</p>
+    <p  class="status" v-else style="color: yellow">UNKNOWN</p>
     <div v-if='this.name == "Provider"'>
-      <p>incoming water temperature[C]: {{ this.attr1 }}</p>
-      <p>outside temperature[C]: {{ this.attr2 }}</p>
-<!--      <p>warm water stream: </p>-->
+      <div class="cell">
+        <p class="textLeft">incoming water temperature[C]: </p>
+        <p class="textRight"> {{ this.attr1 }}</p>
+      </div>
+      <div class="cell">
+        <p class="textLeft">outside temperature[C]: </p>
+        <p class="textRight"> {{ this.attr2 }}</p>
+      </div>
     </div>
-    <div v-if="this.name == 'Controller'">
-      <p>valve: {{ this.valveStatus(this.attr1) }} , {{ this.attr1 }}</p>
-      <p>floating water temperature[C]: {{ this.attr2 }}</p>
-      <p>reference water temperature[C]: {{ this.attr3 }}</p>
+    <div v-if='this.name == "Controller"'>
+      <div  class="cell">
+        <p class="textLeft">valve: </p>
+        <p class="textRight"> {{ this.valveStatus(this.attr1) }}</p>
+      </div>
+      <div  class="cell">
+        <p class="textLeft">floating water temperature[C]: </p>
+        <p class="textRight"> {{ this.attr2 }}</p>
+      </div>
+      <div  class="cell">
+        <p class="textLeft">reference water temperature[C]: </p>
+        <p class="textRight"> {{ this.attr3 }}</p>
+      </div>
     </div>
     <div v-if="this.name == 'Heat Exchanger'">
-      <p>supply temperature[C]: {{ this.attr1 }}</p>
-      <p>return MPC temperature[C]: {{ this.attr2 }}</p>
+      <div  class="cell">
+        <p class="textLeft">supply temperature[C]: </p>
+        <p class="textRight"> {{ this.attr1 }}</p>
+      </div>
+      <div  class="cell">
+        <p class="textLeft">return MPC temperature[C]: </p>
+        <p class="textRight"> {{ this.attr2 }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -49,8 +69,20 @@ export default {
 </script>
 
 <style scoped>
-.measuring_element {
-  border: solid 1px black;
+.cell{
+  display:inline-block;
+  width: 100%;
+  text-decoration: underline;
+  margin: -5px 0px;
+}
+.textLeft {
+  float: left;
+  margin-left: 10px;
+}
+
+.textRight{
+  float: right;
+  margin-right: 10px;
 }
 
 .status{

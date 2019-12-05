@@ -6,6 +6,7 @@ export default {
   name: "DataFetch",
   data() {
     return{
+      sym_time: 0,
       provider_Tzm1: 0,
       provider_To: 0,
       provider_status: '',
@@ -26,18 +27,17 @@ export default {
     }
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       var config = {
           headers: {'Access-Control-Allow-Origin': '*'}
       };
         axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
-        axios.get('https://closingtime.szyszki.de/api/time_with_header', config)
-          .then((response) => {
-              console.log(response)
-          })
-          .catch((error) => {
-              console.log(error)
-          })
+        const response = await fetch('https://closingtime.szyszki.de/api/time_with_header');
+        const json_reponse = await response.json();
+        const string = JSON.stringify(json_reponse);
+        const sec = string.split(":");
+        const num = sec[1].split("}")
+        this.sym_time = Number(num[0])/60;
         axios.get('https://anoldlogcabinforsale.szyszki.de/provider/last/1', config)
         .then((response) => {
           this.provider_Tzm1 = this.returnData(response).incoming_water_temp_Tzm;
@@ -83,6 +83,7 @@ export default {
           });
     },
     updateData(){
+        this.$store.commit('updateSymulationTime', this.sym_time);
         this.$store.commit('updateProvider_Tzm', this.provider_Tzm1);
         this.$store.commit('updateProvider_To', this.provider_To);
         this.$store.commit('updateProvider_status', this.provider_status);

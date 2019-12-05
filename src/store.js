@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 state: {
+    sym_time: 0,
     provider_Tzm: 0,
     provider_To: 0,
     provider_status: '',
@@ -23,6 +24,9 @@ state: {
     building_status: ''
 },
 mutations: {
+    updateSymulationTime(state, payload) {
+        state.sym_time = payload
+    },
     updateProvider_Tzm(state, payload) {
         state.provider_Tzm = payload
     },
@@ -73,6 +77,9 @@ mutations: {
     },
 },
     getters: {
+        getSymulationTime(state) {
+          return state.sym_time
+        },
         getProvider_Fxm(state){
             return state.provider_Fxm
         },

@@ -59,6 +59,7 @@ export default {
         display: flex;
         flex-flow: column;
         justify-content: flex-end;
+        margin-top: 15px;
     }
 }
 

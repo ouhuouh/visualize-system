@@ -72,7 +72,7 @@ export default {
   flex-flow: row wrap;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
   justify-content: space-around;
   background: #242322;
   color: azure;

@@ -20,7 +20,7 @@ body, html {
   height: 100vh;
   width: 100vw;
   min-height: 100%;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -29,7 +29,6 @@ body, html {
   color: #2c3e50;
   margin: 0px;
   height: 100%;
-  /*overflow: scroll;*/
   font-family: 'Barlow', sans-serif;
 
 }

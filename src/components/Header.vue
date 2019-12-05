@@ -1,6 +1,6 @@
 <template>
   <div class="header" onload="this.startTime()">
-    <h3 id="title">symulation time</h3>
+    <h3 id="title">symulation time: {{ this.sym_time }} </h3>
     <p id="txt"></p>
   </div>
 </template>
@@ -8,6 +8,11 @@
 <script>
     export default {
         name: "Header",
+        data (){
+          return {
+            sym_time: 0
+          }
+        },
         methods: {
           startTime() {
             var today = new Date();
@@ -24,10 +29,21 @@
                 i = "0" + i
             } // add zero in front of numbers < 10
             return i;
-          }
+          },
+          timeConvert(n) {
+            var num = n;
+            var hours = (num / 60);
+            var rhours = Math.floor(hours);
+            var minutes = (hours - rhours) * 60;
+            var rminutes = Math.round(minutes);
+            return rhours + " hours " + rminutes + " minutes";
+          },
         },
         created() {
-            setInterval(()=>this.startTime(), 1000)
+            setInterval(() => {
+                this.startTime();
+                this.sym_time = this.timeConvert(this.$store.getters.getSymulationTime);
+            }, 1000)
         }
     }
 </script>

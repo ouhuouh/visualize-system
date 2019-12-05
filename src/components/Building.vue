@@ -4,15 +4,15 @@
     <p v-if="this.status == 'heated' " style="color: #FF4515; font-size: 20px; margin-bottom: 5px">{{ this.status.toUpperCase()}}</p>
     <p v-else style="color: yellow; font-size: 20px;  padding-bottom: 15px">UNKNOWN</p>
     <div class="cell">
-      <p class="textLeft">radiator temperature[C]:</p>
+      <p class="textLeft">radiator temperature[&deg;C]:</p>
       <p class="textRight"> {{ this.rad_temp }}</p>
     </div>
     <div class="cell">
-      <p class="textLeft">room temperature[C]:</p>
+      <p class="textLeft">room temperature[&deg;C]:</p>
       <p class="textRight"> {{ this.room_temp }}</p>
     </div>
     <div class="cell">
-      <p class="textLeft">water intake:</p>
+      <p class="textLeft">water intake[kg/s]:</p>
       <p class="textRight"> {{ this.water_intake }}</p>
     </div>
   </div>

@@ -25,9 +25,9 @@ export default {
     mounted() {
         setInterval(() => {
             this.statusA = this.$store.getters.getBuilding_Status;
-            this.room_tempA = Number(this.$store.getters.getBuilding_Tr).toFixed(2);
-            this.rad_tempA = Number(this.$store.getters.getBuilding_Th).toFixed(2);
-            this.water_intakeA = Number(this.$store.getters.getBuilding_Fcob).toFixed(2);
+            this.room_tempA = Number(Number(this.$store.getters.getBuilding_Tr).toFixed(2));
+            this.rad_tempA = Number(Number(this.$store.getters.getBuilding_Th).toFixed(2));
+            this.water_intakeA = Number(Number(this.$store.getters.getBuilding_Fcob).toFixed(2));
         }, 1000);
     }
 }

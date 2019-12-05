@@ -30,15 +30,15 @@ export default {
     mounted() {
         setInterval(() => {
             this.items[0].status = this.$store.getters.getProvider_status;
-            this.items[0].attr1 = Number(this.$store.getters.getProvider_Tzm).toFixed(2);
-            this.items[0].attr2 = Number(this.$store.getters.getProvider_To).toFixed(2);
+            this.items[0].attr1 = Number(Number(this.$store.getters.getProvider_Tzm).toFixed(2));
+            this.items[0].attr2 = Number(Number(this.$store.getters.getProvider_To).toFixed(2));
             this.items[1].status = this.$store.getters.getController_Status;
-            this.items[1].attr1 = Number(this.$store.getters.getController_Valve);
-            this.items[1].attr2 = Number(this.$store.getters.getController_Tzco).toFixed(2);
-            this.items[1].attr3 = Number(this.$store.getters.getController_Tzcoref).toFixed(2);
+            this.items[1].attr1 = Number(Number(this.$store.getters.getController_Valve));
+            this.items[1].attr2 = Number(Number(this.$store.getters.getController_Tzco).toFixed(2));
+            this.items[1].attr3 = Number(Number(this.$store.getters.getController_Tzcoref).toFixed(2));
             this.items[2].status = this.$store.getters.getExchanger_Status;
-            this.items[2].attr1 = Number(this.$store.getters.getExchanger_Supply).toFixed(2);
-            this.items[2].attr2 = Number(this.$store.getters.getExchanger_MPC).toFixed(2);
+            this.items[2].attr1 = Number(Number(this.$store.getters.getExchanger_Supply).toFixed(2));
+            this.items[2].attr2 = Number(Number(this.$store.getters.getExchanger_MPC).toFixed(2));
         }, 1000);
   }
 }

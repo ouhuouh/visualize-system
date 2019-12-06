@@ -1,7 +1,7 @@
 <template>
   <div class="building">
     <h2 style="text-decoration: underline">{{ this.name }}</h2>
-    <p v-if="this.status == 'heated' " style="color: #FF4515; font-size: 20px; margin-bottom: 5px">{{ this.status.toUpperCase()}}</p>
+    <p v-if="this.status.toUpperCase() == 'RUNNING' " style="color: green; font-size: 20px; margin-bottom: 5px">{{ this.status.toUpperCase()}}</p>
     <p v-else style="color: yellow; font-size: 20px;  padding-bottom: 15px">UNKNOWN</p>
     <div class="cell">
       <p class="textLeft">radiator temperature[&deg;C]:</p>
@@ -12,7 +12,7 @@
       <p class="textRight"> {{ this.room_temp }}</p>
     </div>
     <div class="cell">
-      <p class="textLeft">water intake[kg/s]:</p>
+      <p class="textLeft">water intake[m3/s]:</p>
       <p class="textRight"> {{ this.water_intake }}</p>
     </div>
   </div>

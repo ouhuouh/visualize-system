@@ -75,7 +75,7 @@ export default {
            this.building_Th = this.returnData(response).radiator_temp_Th;
            this.building_Tpcob = this.returnData(response).return_water_temp_Tpcob;
            this.building_Tr = this.returnData(response).room_temp_Tr;
-           this.building_Fcob = this.returnData(response).water_intake_Fcob
+           this.building_Fcob = this.returnData(response).water_intake_Fcob;
            this.building_status = this.returnData(response).status;
           })
           .catch((error) => {
